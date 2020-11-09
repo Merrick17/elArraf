@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Image, Modal} from 'react-native';
+import {StyleSheet, View, Image, Modal,TouchableOpacity} from 'react-native';
 import {NavBar, Button, Input} from 'galio-framework';
 import {GlobalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,42 +12,78 @@ const MainScreen = props => {
     <View style={GlobalStyles.maincreen}>
       <ScrollView>
         <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
         <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
-        <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+         <UserItem
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
-        <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+         <UserItem
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
-        <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+         <UserItem
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
-        <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+         <UserItem
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
-          <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
-        />
-          <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
-        />
-          <UserItem
-          title={'El Arraf el Maghrebi'}
-          desc={'Desription Mezyana 3al arraf mté3na.'}
+         <UserItem
+          title={'Event Mte3ena'}
+          desc={'Desription Mezyana 3al Event mté3na.'}
+          onUserClick={()=>{
+            console.log("hello")
+            props.navigation.navigate('details',{id:"hello"})
+          }}
         />
       </ScrollView>
+      {/* <TouchableOpacity
+        style={{
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 70,
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          height: 70,
+          backgroundColor: '#fff',
+          borderRadius: 100,
+        }}>
+        <Icon name="plus" size={30} color="#01a699" />
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -66,7 +102,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   txtStyle: {
-    color: '#487dff',
+    color: '#00BFA6',
     fontFamily: 'poppins_bold',
     textAlign: 'center',
     margin: 5,

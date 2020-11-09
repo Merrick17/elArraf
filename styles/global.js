@@ -31,7 +31,7 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 20,
   },
   maincreen: {
-    backgroundColor: '#E4E4E4',
+    backgroundColor: '#FFFF',
     flex: 1,
     justifyContent: 'flex-start',
     alignContent: 'center',
@@ -210,7 +210,7 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 17,
     //marginRight: 30,
     fontFamily: 'poppins_bold',
-    color: '#487dff',
+    color: '#00BFA6',
   },
   InputLabel: {
     alignSelf: 'flex-start',
@@ -246,7 +246,7 @@ export const GlobalStyles = StyleSheet.create({
     //marginRight:30
   },
   headerStyle: {
-    backgroundColor: '#487dff',
+    backgroundColor: '#00BFA6',
     height: Dimensions.get('window').height * 0.075,
   },
   btnLabel: {

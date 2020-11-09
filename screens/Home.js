@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 import {GlobalStyles} from '../styles/global';
 import {Input, theme, Button} from 'galio-framework';
+import Icon from 'react-native-vector-icons/Ionicons';
 // import {useDispatch, useSelector} from 'react-redux';
 // import {authUser} from '../store/auth/actions';
 // import {showSpinner} from '../store/spinner/actions';
 // import Spinner from 'react-native-loading-spinner-overlay';
+
 const Home = props => {
   // const dispatch = useDispatch();
   // const state = useSelector(state => state);
@@ -29,7 +31,7 @@ const Home = props => {
         }}
       /> */}
       <Image
-        source={require('../assets/thumbnail.png')}
+        source={require('../assets/env.png')}
         style={{height: 200, width: 260, alignSelf: 'center', marginTop: 20}}
       />
       <View style={styles.bottomCard}>
@@ -71,7 +73,7 @@ const Home = props => {
             }}
           />
           <Button
-            color="#487dff"
+            color="#00BFA6"
             style={GlobalStyles.BtnStyle}
             onPress={() => {
               props.navigation.navigate('main');
@@ -87,7 +89,7 @@ const Home = props => {
           <View style={{marginVertical: 5}}>
             <Text
               style={{
-                color: '#487dff',
+                color: '#00BFA6',
                 fontFamily: 'poppins_bold',
                 alignSelf: 'center',
               }}>
@@ -99,7 +101,7 @@ const Home = props => {
               }}>
               <Text
                 style={{
-                  color: '#487dff',
+                  color: '#00BFA6',
                   fontFamily: 'poppins_bold',
                   alignSelf: 'center',
                 }}>
@@ -109,6 +111,7 @@ const Home = props => {
           </View>
         </View>
       </View>
+     
     </View>
   );
 };

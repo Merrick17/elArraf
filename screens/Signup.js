@@ -125,7 +125,7 @@ const SignupScreen = props => {
               {passError ? 'votre mot de passe doit avoir 8 caractères' : ''}
             </Text>
             <Button
-              color="#487dff"
+              color="#00BFA6"
               style={GlobalStyles.BtnStyle}
               onPress={() => {
                 let newUser = {

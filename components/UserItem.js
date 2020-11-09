@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const UserItem = props => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onUserClick}>
       <View style={Btnstyles.main}>
         <Image
           style={{width: 50, height: 50, marginHorizontal: 17}}
@@ -31,7 +31,7 @@ export default UserItem;
 const Btnstyles = StyleSheet.create({
   main: {
     margin: 5,
-    backgroundColor: '#487dff',
+    backgroundColor: '#00BFA6',
     borderRadius: 15,
     height: 90,
     flexDirection: 'row',
