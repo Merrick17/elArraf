@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Input} from 'galio-framework';
+import {Picker} from '@react-native-picker/picker';
 import Modal, {
   ModalContent,
   ModalFooter,
@@ -12,6 +13,7 @@ const DangerModal = (props) => {
   const modalState = useSelector((state) => state.modalReducer);
   const [lat, setLat] = useState(props.lat);
   const [lng, setLng] = useState(props.lng);
+  const [categ, setCateg] = useState('Air');
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
@@ -68,6 +70,15 @@ const DangerModal = (props) => {
             bgColor={'#EEEEEE'}
             borderless={true}
           />
+          <Picker
+            selectedValue={categ}
+            style={{height: 50, width: 150}}
+            itemStyle={GlobalStyles.InputLabel}
+            onValueChange={(itemValue, itemIndex) => setCateg(itemValue)}>
+            <Picker.Item label="Air" value="Air" />
+            <Picker.Item label="Eau" value="Eau" />
+            <Picker.Item label="Terre" value="Terre" />
+          </Picker>
         </ModalContent>
       </Modal>
     </View>

@@ -4,6 +4,7 @@ import MapboxGL from '@react-native-mapbox-gl/maps';
 import Geolocation from '@react-native-community/geolocation';
 import {useDispatch, useSelector} from 'react-redux';
 import DangerModal from '../components/dangerModal';
+import {Button} from 'galio-framework';
 
 const MapsScreen = () => {
   const [long, setLong] = useState(0);
@@ -22,7 +23,26 @@ const MapsScreen = () => {
   return (
     <View style={styles.page}>
       <DangerModal lat={alt} lng={long} />
+
       <View style={styles.container}>
+        <View
+          style={{
+            width: '100%',
+            height: 60,
+            backgroundColor: 'white',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}>
+          <Button size="small" round color="success" style={{width:80,marginVertical:7,marginHorizontal:10}}>
+            Air
+          </Button>
+          <Button size="small"  round color="success" style={{width:80}} style={{width:70,marginVertical:7,marginHorizontal:10}}>
+            Eau
+          </Button>
+          <Button size="small"  round color="success" style={{width:80}} style={{width:70,marginVertical:7,marginHorizontal:10}}>
+            Terre
+          </Button>
+        </View>
         <MapboxGL.MapView
           style={styles.map}
           onPress={(feature) => {
