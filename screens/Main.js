@@ -31,7 +31,7 @@ const MainScreen = (props) => {
             desc={elm.datEvent}
             onUserClick={() => {
               console.log('hello');
-              props.navigation.navigate('details', {id: 'hello'});
+              props.navigation.navigate('details', {event: elm});
             }}
           />
         ))}

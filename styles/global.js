@@ -172,8 +172,9 @@ export const GlobalStyles = StyleSheet.create({
   },
   newsTitle: {
     fontFamily: 'poppins_medium',
-    color: 'white',
+    color: 'black',
     fontSize: 18,
+    margin:20
   },
   iconStyle: {
     fontFamily: 'poppins_medium',
