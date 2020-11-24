@@ -2,13 +2,20 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-const UserItem = props => {
+const UserItem = (props) => {
   return (
     <TouchableOpacity onPress={props.onUserClick}>
       <View style={Btnstyles.main}>
         <Image
-          style={{width: 50, height: 50, marginHorizontal: 17}}
-          source={require('../assets/avatar.png')}
+          style={{
+            width: 70,
+            height: 70,
+            marginHorizontal: 17,
+            borderRadius: 20,
+          }}
+          source={{
+            uri: 'https://env-hero.herokuapp.com/' + props.image,
+          }}
         />
 
         <View>

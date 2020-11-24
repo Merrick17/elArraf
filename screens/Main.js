@@ -1,72 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Image, Modal,TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image, Modal, TouchableOpacity} from 'react-native';
 import {NavBar, Button, Input} from 'galio-framework';
 import {GlobalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Text} from 'galio-framework';
 import UserItem from '../components/UserItem';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAllEvents} from '../actions/event.actions';
+const MainScreen = (props) => {
+  const eventState = useSelector((state) => state.eventReducer);
+  const user = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const getData = () => {
+    dispatch(getAllEvents(user.token));
+  };
+  useEffect(() => {
+    getData();
+    console.log('our events', eventState);
+  }, []);
 
-const MainScreen = props => {
   return (
     <View style={GlobalStyles.maincreen}>
       <ScrollView>
-        <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-        <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-         <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-         <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-         <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-         <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
-         <UserItem
-          title={'Event Mte3ena'}
-          desc={'Desription Mezyana 3al Event mté3na.'}
-          onUserClick={()=>{
-            console.log("hello")
-            props.navigation.navigate('details',{id:"hello"})
-          }}
-        />
+        {eventState.map((elm) => (
+          <UserItem
+            image={elm.eventImage}
+            key={elm._id}
+            title={elm.title}
+            desc={elm.datEvent}
+            onUserClick={() => {
+              console.log('hello');
+              props.navigation.navigate('details', {id: 'hello'});
+            }}
+          />
+        ))}
       </ScrollView>
       {/* <TouchableOpacity
         style={{

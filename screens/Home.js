@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,47 +10,46 @@ import {
 import {GlobalStyles} from '../styles/global';
 import {Input, theme, Button} from 'galio-framework';
 import Icon from 'react-native-vector-icons/Ionicons';
-// import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../actions/user.actions';
 // import {authUser} from '../store/auth/actions';
 // import {showSpinner} from '../store/spinner/actions';
-// import Spinner from 'react-native-loading-spinner-overlay';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-const Home = props => {
-  // const dispatch = useDispatch();
-  // const state = useSelector(state => state);
+const Home = (props) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const [email, setEmail] = useState('');
   const [psw, setPass] = useState('');
   const [showError, setShowError] = useState(false);
+  useEffect(()=>{
+    console.log(state.loaderReducer)
+  })
   return (
     <View style={GlobalStyles.maincreen}>
-      {/* <Spinner
-        visible={state.spinnerReducer}
-        textContent={'Veuillez Patienter...'}
-        textStyle={{
-          color: '#FFF',
-        }}
-      /> */}
       <Image
         source={require('../assets/env.png')}
         style={{height: 200, width: 260, alignSelf: 'center', marginTop: 20}}
       />
       <View style={styles.bottomCard}>
+        <Spinner
+          visible={state.loaderReducer}
+          textContent={'Veuillez Patienter...'}
+          textStyle={{
+            color: '#FFF',
+          }}
+        />
         <View style={styles.content}>
           <Text style={GlobalStyles.label}>Se Connecter</Text>
-          <Text style={GlobalStyles.InputLabel}>Email</Text>
+          <Text style={GlobalStyles.InputLabel}>Login</Text>
           <Input
-            placeholder="mail@example.com"
+            placeholder="Login"
             style={GlobalStyles.inputItem}
             bgColor={'#EEEEEE'}
             borderless={true}
-            onChangeText={text => {
+            onChangeText={(text) => {
               setEmail(text);
-              let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-              if (reg.test(email) === false) {
-                setShowError(true);
-              } else {
-                setShowError(false);
-              }
+
             }}
             value={email}
           />
@@ -68,7 +67,7 @@ const Home = props => {
             password
             viewPass
             value={psw}
-            onChangeText={text => {
+            onChangeText={(text) => {
               setPass(text);
             }}
           />
@@ -76,7 +75,8 @@ const Home = props => {
             color="#00BFA6"
             style={GlobalStyles.BtnStyle}
             onPress={() => {
-              props.navigation.navigate('main');
+              dispatch(login(email, psw, props.navigation));
+              //props.navigation.navigate('main');
             }}>
             <Text
               style={{
@@ -111,7 +111,6 @@ const Home = props => {
           </View>
         </View>
       </View>
-     
     </View>
   );
 };

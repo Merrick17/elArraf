@@ -11,41 +11,64 @@ import {
 } from 'react-native';
 import {GlobalStyles} from '../styles/global';
 import {Input, theme, Button} from 'galio-framework';
+import {useDispatch} from 'react-redux';
+import {register} from '../actions/user.actions';
 
-const SignupScreen = props => {
+const SignupScreen = (props) => {
   const [email, setEmail] = useState('');
   const [fullname, setFullName] = useState('');
+  const [name, setName] = useState('');
   const [adr, setAdr] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showError, setShowError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
   const [passError, setPassError] = useState(false);
+  const [login, setLogin] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <View style={GlobalStyles.maincreen}>
-      <ScrollView>
-        <Image
-          source={require('../assets/thumbnail.png')}
-          style={{
-            height: 120,
-            width: 180,
-            alignSelf: 'center',
-            marginVertical: 10,
-          }}
-        />
+      <ScrollView
+        style={{
+          marginVertical: 10,
+          height:Dimensions.get('window').height
+        }}>
+
         <View style={styles.bottomCard}>
           <View style={styles.content}>
-            <Text style={GlobalStyles.label}>Inscription</Text>
-            <Text style={GlobalStyles.InputLabel}>Nom & Prénom</Text>
+            {/* <Text style={GlobalStyles.label}>Inscription</Text> */}
+            <Text style={GlobalStyles.InputLabel}>Nom </Text>
+            <Input
+              placeholder="Exemple "
+              style={GlobalStyles.inputItem}
+              bgColor={'#EEEEEE'}
+              borderless={true}
+              value={name}
+              onChangeText={(text) => {
+                setName(text);
+              }}
+            />
+            <Text style={GlobalStyles.InputLabel}>Prenom </Text>
             <Input
               placeholder="Exemple "
               style={GlobalStyles.inputItem}
               bgColor={'#EEEEEE'}
               borderless={true}
               value={fullname}
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setFullName(text);
+              }}
+            />
+            <Text style={GlobalStyles.InputLabel}>Login</Text>
+            <Input
+              placeholder="Exemple "
+              style={GlobalStyles.inputItem}
+              bgColor={'#EEEEEE'}
+              borderless={true}
+              value={login}
+              onChangeText={(text) => {
+                setLogin(text);
               }}
             />
             <Text style={GlobalStyles.InputLabel}>Email</Text>
@@ -54,7 +77,7 @@ const SignupScreen = props => {
               style={GlobalStyles.inputItem}
               bgColor={'#EEEEEE'}
               borderless={true}
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setEmail(text);
                 let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 if (reg.test(email) === false) {
@@ -65,9 +88,9 @@ const SignupScreen = props => {
               }}
               value={email}
             />
-            <Text style={GlobalStyles.errorLabel}>
+            {/* <Text style={GlobalStyles.errorLabel}>
               {showError ? 'Veuillez saisir une adresse email valide' : ''}
-            </Text>
+            </Text> */}
             <Text style={GlobalStyles.InputLabel}>Adresse</Text>
             <Input
               placeholder="Exemple"
@@ -75,17 +98,17 @@ const SignupScreen = props => {
               bgColor={'#EEEEEE'}
               borderless={true}
               value={adr}
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setAdr(text);
               }}
             />
             <Text style={GlobalStyles.InputLabel}>Téléphone</Text>
             <Input
-              placeholder="mail@example.com"
+              placeholder="9999999999999"
               style={GlobalStyles.inputItem}
               bgColor={'#EEEEEE'}
               borderless={true}
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setPhone(text);
 
                 if (
@@ -99,9 +122,9 @@ const SignupScreen = props => {
               }}
               value={phone}
             />
-            <Text style={GlobalStyles.errorLabel}>
+            {/* <Text style={GlobalStyles.errorLabel}>
               {phoneError ? 'Veuillez saisir un numéro valide' : ''}
-            </Text>
+            </Text> */}
             <Text style={GlobalStyles.InputLabel}>Mot de passe</Text>
             <Input
               placeholder="**************"
@@ -110,7 +133,7 @@ const SignupScreen = props => {
               borderless={true}
               password
               viewPass
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setPassword(text);
 
                 if (password.length < 8) {
@@ -121,9 +144,9 @@ const SignupScreen = props => {
               }}
               value={password}
             />
-            <Text style={GlobalStyles.errorLabel}>
+            {/* <Text style={GlobalStyles.errorLabel}>
               {passError ? 'votre mot de passe doit avoir 8 caractères' : ''}
-            </Text>
+            </Text> */}
             <Button
               color="#00BFA6"
               style={GlobalStyles.BtnStyle}
@@ -131,25 +154,30 @@ const SignupScreen = props => {
                 let newUser = {
                   email: email,
                   password: password,
-                  fullname: fullname,
+                  firstName: fullname,
+                  lastName: name,
                   address: adr,
-                  phonenumber: phone,
+                  phoneNumber: phone,
+                  login: login,
+                  isAdmin: false,
                 };
-                if (
-                  email == '' ||
-                  password == '' ||
-                  fullname == '' ||
-                  adr == '' ||
-                  phone == ''
-                ) {
-                  Alert.alert(
-                    'Erreur',
-                    'Veuillez remplir les champs !',
-                    [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                    {cancelable: false},
-                  );
-                } else {
-                }
+                dispatch(register(newUser, props.navigation));
+                // if (
+                //   email == '' ||
+                //   password == '' ||
+                //   fullname == '' ||
+                //   adr == '' ||
+                //   phone == ''
+                // ) {
+                //   Alert.alert(
+                //     'Erreur',
+                //     'Veuillez remplir les champs !',
+                //     [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+                //     {cancelable: false},
+                //   );
+                // } else {
+
+                // }
               }}>
               <Text
                 style={{
@@ -172,7 +200,7 @@ const styles = StyleSheet.create({
   bottomCard: {
     alignSelf: 'flex-start',
     backgroundColor: 'white',
-    height: Dimensions.get('window').height * 0.9,
+    height: Dimensions.get('window').height ,
     width: Dimensions.get('window').width,
     //position: 'fixed',
     bottom: 0,
@@ -183,10 +211,11 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3,
     },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
+    // shadowOpacity: 0.29,
+    // shadowRadius: 4.65,
 
-    elevation: 7,
+    // elevation: 7,
+    // marginBottom:20
   },
   content: {
     alignSelf: 'center',
